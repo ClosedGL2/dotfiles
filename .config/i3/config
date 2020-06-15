@@ -192,7 +192,6 @@ bindsym $mod+Shift+x exec i3lock
 # wallpaper and startup programs
 exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Pictures/Wallpapers/outdoors.jpg
 exec --no-startup-id xfce4-panel
-exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec compton -f
 exec steam
