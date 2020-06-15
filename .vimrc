@@ -44,3 +44,4 @@ cmap Q1 q!
 cmap code e ~/Documents/Coding/
 cmap settings e ~/.vimrc
 cmap i3config e ~/.config/i3/config
+cmap alacrittyconfig e ~/.config/alacritty/alacritty.yml
