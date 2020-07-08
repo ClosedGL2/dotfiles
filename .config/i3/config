@@ -26,10 +26,6 @@ font pango:monospace 9
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -135,8 +131,6 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "-- resize --" {
@@ -180,42 +174,36 @@ client.unfocused        $inactive-bg-color $inactive-bg-color $text-color $indic
 client.focused_inactive $inactive-bg-color $inactive-bg-color $text-color $indicator
 client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color $indicator
 
-# i3bar config
-bar {
-        status_command i3status-rs ~/.config/i3/i3-status-rs.toml
-        i3bar_command i3bar
-        position top
-        font pango: IBM Plex Mono 9
-        colors {
-                background $inactive-bg-color
-                separator $inactive-bg-color
-                #                  border             background         text
-                focused_workspace  $bg-color          $bg-color          $color
-                inactive_workspace $inactive-bg-color $inactive-bg-color $text-color
-                urgent_workspace   $urgent-bg-color   $urgent-bg-color   $color
-        }
-}
-
 # window GAPS and borders
 gaps inner 12
 gaps outer 15
 for_window [class="^.*"] border pixel 2
 
+# Plasma element rules
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+for_window [class="plasmashell"] floating enable;
+for_window [class="Plasma"] floating enable; border pixel 0
+for_window [title="plasma-desktop"] floating enable; border pixel 0
+for_window [title="win7"] floating enable; border pixel 0
+for_window [class="krunner"] floating enable, border pixel 0, move right 441px, move up 444px
+for_window [class="Kmix"] floating enable; border pixel 0
+for_window [class="Klipper"] floating enable; border pixel 0
+for_window [class="Plasmoidviewer"] floating enable; border pixel 0
+for_window [class="(?i)*nextcloud*"] floating disable
+
 # window rules
-for_window [class="Pavucontrol"] floating enable
+for_window [title="xeyes"] floating enable; border pixel 0
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -l 10
+bindsym $mod+d exec dmenu_run
 
 # custom key bindings
-bindsym $mod+Shift+x exec i3lock
-bindsym $mod+Shift+a exec pulseaudio & pavucontrol
-bindsym $mod+Shift+f exec nautilus
+bindsym $mod+Shift+f exec dolphin
 bindsym Pause exec alacritty -e xkill
-bindsym Print exec xfce4-screenshooter
+bindsym Print exec spectacle
 
 # wallpaper and startup programs
-exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Pictures/Wallpapers/wavelines.jpg
-exec --no-startup-id ~/.config/i3/compton.sh &
-exec --no-startup-id pamac-tray
+exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/paper.jpg
+exec_always --no-startup-id picom --backend glx --experimental-backends -bc
+exec --no-startup-id dropbox
 exec discord

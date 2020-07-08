@@ -1,2 +1,4 @@
 xterm*background: black
 xterm*foreground: lightgray
+xterm*font: *-fixed-*-*-*-14-*
+xeyes*foreground: black

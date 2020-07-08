@@ -18,10 +18,6 @@ set wildmenu
 set wrap
 set laststatus=2
 
-" plugins
-call plug#begin()
-call plug#end()
-
 " key bindings
 nnoremap B ^
 nnoremap E $
@@ -45,3 +41,4 @@ cmap code e ~/Documents/Coding/
 cmap settings e ~/.vimrc
 cmap i3config e ~/.config/i3/config
 cmap alacrittyconfig e ~/.config/alacritty/alacritty.yml
+cmap picomconfig e ~/.config/picom.conf
