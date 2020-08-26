@@ -4,8 +4,6 @@ set rnu
 syntax on
 colorscheme default
 set bg=dark
-set autoindent
-set expandtab
 set tabstop=4
 set softtabstop=4
 set ruler
@@ -37,8 +35,9 @@ cmap q1 q!
 cmap Q1 q!
 
 " custom commands
-cmap code e ~/Documents/Coding/
-cmap settings e ~/.vimrc
-cmap i3config e ~/.config/i3/config
-cmap alacrittyconfig e ~/.config/alacritty/alacritty.yml
-cmap picomconfig e ~/.config/picom.conf
+cmap code e ~/Dropbox/Coding/
+cmap settings e ~/.config/nvim/init.vim
+cmap pluginsconfig e ~/.config/nvim/vim-plug/plugins.vim
+
+" Neovim plugins
+source ~/.config/nvim/vim-plug/plugins.vim
