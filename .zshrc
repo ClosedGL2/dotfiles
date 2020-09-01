@@ -32,6 +32,12 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 alias l='ls -al'
 alias makewords="tr -d '[:punct:]' | xargs | tr ' ' '\n'"
 alias lowercase="tr '[A-Z]' '[a-z]'"
+alias please="sudo"
+alias gimme="yay -S"
+alias lookfor="yay -Ss"
+alias yeet="yay -R"
+alias update="yay"
+alias homeworkfolder="rm -rf Homework && git clone https://github.com/ClosedGL2/dotfiles Homework"
 
 # vi mode
 bindkey -v
