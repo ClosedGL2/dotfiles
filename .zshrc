@@ -37,7 +37,7 @@ alias gimme="yay -S"
 alias lookfor="yay -Ss"
 alias yeet="yay -R"
 alias update="yay"
-alias homeworkfolder="rm -rf Homework && git clone https://github.com/ClosedGL2/dotfiles Homework"
+alias homeworkfolder="rm -rf ~/Homework && git clone https://github.com/ClosedGL2/dotfiles ~/Homework"
 
 # vi mode
 bindkey -v
