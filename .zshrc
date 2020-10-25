@@ -6,7 +6,8 @@ setopt autocd
 
 # prompt
 autoload -U colors && colors
-PS1="%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[cyan]%}>%B%(?.%{$fg[cyan]%}.%{$fg[red]%})>%{$reset_color%}%b "
+NEWLINE=$'\n'
+PS1="%F{46}[%F{9}%n%F{21}@%F{184}%M %F{172}%1~%F{46}]${NEWLINE}%F{45}%#> "
 
 # tab completion
 autoload -U compinit
@@ -38,6 +39,8 @@ alias lookfor="yay -Ss"
 alias yeet="yay -R"
 alias update="yay"
 alias homeworkfolder="rm -rf ~/Homework && git clone https://github.com/ClosedGL2/dotfiles ~/Homework"
+alias listcfiles="echo \$(find . -name '*.h' && find . -name '*.c' && find . -name '*.hpp' && find . -name '*.cpp') | tr ' ' '\n' | sort"
+alias viewfiles="xargs -n 1 less"
 
 # vi mode
 bindkey -v
