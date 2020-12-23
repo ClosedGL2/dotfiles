@@ -1,12 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/home/closedgl/.config/nvim/plug-config'
+let g:netrw_dirhist_7='/home/closedgl/Desktop/GroceryTycoonSDL'
+let g:netrw_dirhist_6='/home/closedgl/Desktop'
+let g:netrw_dirhist_5='/home/closedgl/Desktop/GroceryTycoonSDL'
 let g:netrw_dirhist_4='/home/closedgl/Dropbox/Coding/TI Basic'
 let g:netrw_dirhist_3='/home/closedgl/Dropbox/Coding'
 let g:netrw_dirhist_2='/home/closedgl/Dropbox/Coding/TI Basic'
 let g:netrw_dirhist_1='/home/closedgl/Dropbox/Coding'
 let g:netrw_dirhist_0='/home/closedgl/Dropbox/Coding/TI Basic'
 let g:netrw_dirhist_9='/home/closedgl/Dropbox/Coding'
-let g:netrw_dirhist_8='/home/closedgl/Documents/Coding/paoprinter'
-let g:netrw_dirhist_7='/home/closedgl/Documents/Coding'
-let g:netrw_dirhist_6='/home/closedgl/Documents/Coding/paoprinter'
-let g:netrw_dirhist_5='/home/closedgl/Documents/Coding'

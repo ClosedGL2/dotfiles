@@ -20,6 +20,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # editor
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
+alias edit=$EDITOR
 
 # history file
 HISTFILE=~/.cache/zsh/history
@@ -31,9 +32,10 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # aliases
 alias l='ls -al'
+alias c='clear'
 alias makewords="tr -d '[:punct:]' | xargs | tr ' ' '\n'"
 alias lowercase="tr '[A-Z]' '[a-z]'"
-alias please="sudo"
+alias please="doas"
 alias gimme="yay -S"
 alias lookfor="yay -Ss"
 alias yeet="yay -R"
@@ -41,6 +43,11 @@ alias update="yay"
 alias homeworkfolder="rm -rf ~/Homework && git clone https://github.com/ClosedGL2/dotfiles ~/Homework"
 alias listcfiles="echo \$(find . -name '*.h' && find . -name '*.c' && find . -name '*.hpp' && find . -name '*.cpp') | tr ' ' '\n' | sort"
 alias viewfiles="xargs -n 1 less"
+alias zshrc="$EDITOR ~/.zshrc"
+
+# dmenu config
+alias dmenu="dmenu -nf '#C5C5C5' -nb '#3B3B3B' -sb '#3670BB' -sf '#FFFFFF' -fn 'monospace-10'"
+alias dmenu_run="dmenu_run -nf '#C5C5C5' -nb '#3B3B3B' -sb '#3670BB' -sf '#FFFFFF' -fn 'monospace-10' -p 'Run command:'"
 
 # vi mode
 bindkey -v
