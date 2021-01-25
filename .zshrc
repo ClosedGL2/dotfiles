@@ -7,7 +7,7 @@ setopt autocd
 # prompt
 autoload -U colors && colors
 NEWLINE=$'\n'
-PS1="%F{46}[%F{9}%n%F{21}@%F{184}%M %F{172}%1~%F{46}]${NEWLINE}%F{45}%#> "
+PS1="%F{46}[%F{9}%n%F{21}@%F{184}%M %F{172}%1~%F{46}]${NEWLINE}%F{45}%#> %f"
 
 # tab completion
 autoload -U compinit
