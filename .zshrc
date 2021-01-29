@@ -3,11 +3,32 @@ setopt correct
 setopt nobeep
 setopt appendhistory
 setopt autocd
+setopt prompt_subst
 
 # prompt
 autoload -U colors && colors
 NEWLINE=$'\n'
-PS1="%F{46}[%F{9}%n%F{21}@%F{184}%M %F{172}%1~%F{46}]${NEWLINE}%F{45}%#> %f"
+
+precmd () {
+	VI_MODE="%B%F{46}I%b"
+	PS1="%F{46}[%B%F{9}%n%F{21}%b@%B%F{184}%M%f %b%F{172}%1~%F{46}]${NEWLINE}${VI_MODE}%f %F{200}>%f "
+}
+
+function set-prompt () {
+	case ${KEYMAP} in
+		(vicmd)			VI_MODE="%B%F{51}N%b" ;;
+		(main|viins)	VI_MODE="%B%F{46}I%b" ;;
+		(*)				VI_MODE="%B%F{46}I%b" ;;
+	esac
+	PS1="%F{46}[%B%F{9}%n%F{21}%b@%B%F{184}%M%f %b%F{172}%1~%F{46}]${NEWLINE}${VI_MODE}%f %F{200}>%f "
+}
+
+function zle-line-init zle-keymap-select {
+	set-prompt
+	zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
 
 # tab completion
 autoload -U compinit
@@ -36,10 +57,10 @@ alias c='clear'
 alias makewords="tr -d '[:punct:]' | xargs | tr ' ' '\n'"
 alias lowercase="tr '[A-Z]' '[a-z]'"
 alias please="doas"
-alias gimme="yay -S"
-alias lookfor="yay -Ss"
-alias yeet="yay -R"
-alias update="yay"
+alias gimme="paru -S"
+alias lookfor="paru -Ss"
+alias yeet="paru -Rcn"
+alias update="paru -Syu"
 alias homeworkfolder="rm -rf ~/Homework && git clone https://github.com/ClosedGL2/dotfiles ~/Homework"
 alias listcfiles="echo \$(find . -name '*.h' && find . -name '*.c' && find . -name '*.hpp' && find . -name '*.cpp') | tr ' ' '\n' | sort"
 alias viewfiles="xargs -n 1 less"
@@ -51,25 +72,4 @@ alias dmenu_run="dmenu_run -nf '#C5C5C5' -nb '#3B3B3B' -sb '#3670BB' -sf '#FFFFF
 
 # vi mode
 bindkey -v
-export KEYTIMEOUT=1
-
-# change cursor shape for vi modes
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q'
-preexec() { echo -ne '\e[5 q' ;}
+KEYTIMEOUT=1
