@@ -11,7 +11,7 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
 " Switch to your current theme
-let g:airline_theme = 'daycula'
+let g:airline_theme = 'tokyonight'
 
 " Always show tabs
 set showtabline=2

@@ -13,8 +13,8 @@ Plug 'preservim/nerdtree' |
 			\ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}
 Plug 'tpope/vim-fugitive'
+Plug 'ghifarit53/tokyonight-vim'
 
 call plug#end()
 
@@ -30,7 +30,8 @@ let g:NERDTreeGitStatusConcealBrackets = 1
 
 " color scheme
 set termguicolors
-colorscheme daycula
+let g:tokyonight_style = 'night'
+colorscheme tokyonight
 
 " Airline
 source $HOME/.config/nvim/themes/airline.vim
