@@ -1,11 +1,22 @@
 set $mod Mod4
-set $term kitty
+set $term alacritty
+
+# screen resolution
+output eDP-1 resolution 1920x1080
+
+# xwayland
+xwayland enable
 
 # font for window titles
-font pango:Hack 0
+font Hack 0
 
 # NetworkManager applet
 exec --no-startup-id nm-applet
+
+# remap caps lock on laptop keyboard to esc
+input 1:1:AT_Translated_Set_2_keyboard {
+	xkb_options caps:escape
+}
 
 # volume control
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -121,8 +132,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# exit sway (logs you out of your wayland session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
 # resize window (you can also use the mouse for that)
 mode "-- resize --" {
@@ -166,17 +177,18 @@ client.unfocused        $inactive-bg-color $inactive-bg-color $text-color $indic
 client.focused_inactive $inactive-bg-color $inactive-bg-color $text-color $indicator
 client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color $indicator
 
-# i3bar config
+# bar config
 bar {
         status_command i3status-rs ~/.config/sway/i3-status-rs.toml
         position top
-        font pango:Hack 12
+        font hack 12
 
         colors {
 			background #222222
 			statusline #FFFFFF
 			separator  #FFFFFF
 
+			#                  #border #bg     #text
 			focused_workspace  #FFFFFF #FFFFFF #000000
 			active_workspace   #222222 #222222 #FFFFFF
 			inactive_workspace #222222 #222222 #FFFFFF
@@ -192,20 +204,23 @@ for_window [class="^.*"] border pixel 2
 
 # window rules
 for_window [class="Pavucontrol"] floating enable
-for_window [title="Screenshot"] floating enable
 for_window [title="galculator"] floating enable
 for_window [title="Grocery Tycoon"] floating enable
 
 # start dmenu run prompt
 bindsym $mod+r exec dmenu_run
 
+# fullscreen screenshot
+bindsym $mod+Print exec grim ~/Pictures/Screenshots/Screenshot_$(date +%Y-%m-%d_%H-%m-%S).png
+
+# selected region screenshot
+bindsym Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/Screenshot_$(date +%Y-%m-%d_%H-%m-%S).png
+
 # custom key bindings
 bindsym $mod+Shift+a exec pulseaudio & pavucontrol
 bindsym $mod+Shift+f exec export EDITOR=nvim && export VISUAL=nvim && $term -e ranger
 bindsym Pause exec sh -c xkill
-bindsym Print exec xfce4-screenshooter
 bindsym $mod+p exec passmenu
 
-# wallpaper and startup programs
-exec_always --no-startup-id feh --no-fehbg --bg-fill ~/Pictures/Wallpapers/melonyfanart.png
-exec --no-startup-id dunst
+# wallpaper
+output * bg ~/Pictures/Wallpapers/melonyfanart.png fill
